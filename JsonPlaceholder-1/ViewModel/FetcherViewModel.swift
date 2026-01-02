@@ -39,17 +39,3 @@ class FetcherViewModel: ObservableObject {
         }.resume()
     }
 }
-
-//URLSession.shared.dataTask(with: url) { (data, response, error) in
-//    if let data = data {
-//        do {
-//            let decodedPosts = try JSONDecoder().decode([Post].self, from: data)
-//            DispatchQueue.main.async {
-//                self.posts = decodedPosts
-//            }
-//        } catch {
-//            print("Decoding error: \(error)")
-//        }
-//    }
-//    
-//}.resume()
