@@ -10,19 +10,18 @@ import SwiftUI
 import Combine
 
 class FetcherViewModel: ObservableObject {
-    @Published var posts: [Post] = []
-//    @Published var photos: [PostImages] = []
+//    @Published var posts: [Post] = []
+    @Published var posts = [Post]()
+    @Published var isLoading: Bool = false
     
     func fetchPosts() {
+        
+        isLoading = true
+        
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
             print("Invalid URL")
             return
         }
-        
-//        guard let urlPhotos = URL(string: "https://jsonplaceholder.typicode.com/photos") else {
-//            print("Invalid URL")
-//            return
-//        }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {

@@ -12,8 +12,8 @@ struct JsonPlaceholder_1App: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView(posts: [])
-//            ContentView()
-            PostListView()
+            ContentView()
+//            PostListView()
         }
     }
 }
