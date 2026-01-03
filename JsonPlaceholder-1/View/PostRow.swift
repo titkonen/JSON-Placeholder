@@ -39,7 +39,8 @@ struct PostRow: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(post.title)
                     .font(.headline)
-                Text(post.body)
+//                Text(post.body)
+//                    .font(.callout)
             }
         }
     }

@@ -12,16 +12,27 @@ struct PostListView: View {
     
     var body: some View {
         NavigationView {
-            List(fetcherViewModel.posts) { post in
-                PostRow(post: post)
+//            List(fetcherViewModel.posts) { post in
+//                PostRow(post: post)
+//            }
+            List {
+                ForEach(fetcherViewModel.posts) { post in
+                    NavigationLink {
+                        PostDetailView(post: post)
+                    } label: {
+                        PostRow(post: post)
+                    }
+                }
             }
+            
         }
+//        .listStyle(PlainListStyle())
         .navigationTitle("Fetched Items")
         .onAppear() {
             fetcherViewModel.fetchPosts()
             print(fetcherViewModel.fetchPosts())
         }
-    }///.navView
+    } ///.body
     
 }
 
