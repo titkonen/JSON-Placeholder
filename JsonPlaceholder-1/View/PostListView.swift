@@ -9,14 +9,20 @@ import SwiftUI
 
 struct PostListView: View {
     @StateObject private var fetcherViewModel = FetcherViewModel()
+    @State private var searchText: String = ""
+    
+    var filteredPosts: [Post] {
+        if searchText.count == 0 {
+            return fetcherViewModel.posts
+        } else {
+            return fetcherViewModel.posts.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
     
     var body: some View {
         NavigationView {
-//            List(fetcherViewModel.posts) { post in
-//                PostRow(post: post)
-//            }
             List {
-                ForEach(fetcherViewModel.posts) { post in
+                ForEach(filteredPosts) { post in
                     NavigationLink {
                         PostDetailView(post: post)
                     } label: {
@@ -26,11 +32,11 @@ struct PostListView: View {
             }
             
         }
-//        .listStyle(PlainListStyle())
         .navigationTitle("Fetched Items")
+        .searchable(text: $searchText)
         .onAppear() {
             fetcherViewModel.fetchPosts()
-            print(fetcherViewModel.fetchPosts())
+//            print(fetcherViewModel.fetchPosts())
         }
     } ///.body
     

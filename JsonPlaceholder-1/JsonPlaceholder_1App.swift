@@ -13,8 +13,7 @@ struct JsonPlaceholder_1App: App {
         WindowGroup {
 //            ContentView(posts: [])
 //            ContentView()
-            PostListView()
-        }
+            PostListView()        }
     }
 }
 
