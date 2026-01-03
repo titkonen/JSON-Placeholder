@@ -20,7 +20,7 @@ struct PostListView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(filteredPosts) { post in
                     NavigationLink {
@@ -30,9 +30,9 @@ struct PostListView: View {
                     }
                 }
             }
-            
+            .navigationTitle("Fetched Items")
         }
-        .navigationTitle("Fetched Items")
+        
         .searchable(text: $searchText)
         .onAppear() {
             fetcherViewModel.fetchPosts()
