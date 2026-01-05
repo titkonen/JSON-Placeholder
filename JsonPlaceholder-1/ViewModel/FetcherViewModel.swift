@@ -12,10 +12,12 @@ import Combine
 class FetcherViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var errorMessage: String? = nil
+    @Published var isLoading: Bool = false
     
     func fetchPosts() {
         
         errorMessage = nil
+        isLoading = true
         
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
 
@@ -27,6 +29,7 @@ class FetcherViewModel: ObservableObject {
                         self.posts = decodedPosts
                     }
                 } catch {
+                    self.errorMessage = "Failed to decode JSON"
                     print("Decoding error: \(error)")
                     print(self.errorMessage ?? "virhe")
                 }

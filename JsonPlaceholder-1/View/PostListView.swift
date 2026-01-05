@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostListView: View {
+    let posts: [Post]
     @StateObject private var fetcherViewModel = FetcherViewModel()
     @State private var searchText: String = ""
     
@@ -43,5 +44,5 @@ struct PostListView: View {
 }
 
 #Preview {
-    PostListView()
+    PostListView(posts: FetcherViewModel().posts)
 }
