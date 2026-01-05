@@ -11,19 +11,14 @@ import Combine
 
 class FetcherViewModel: ObservableObject {
     @Published var posts: [Post] = []
-//    @Published var photos: [PostImages] = []
+    @Published var errorMessage: String? = nil
     
     func fetchPosts() {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
-            print("Invalid URL")
-            return
-        }
         
-//        guard let urlPhotos = URL(string: "https://jsonplaceholder.typicode.com/photos") else {
-//            print("Invalid URL")
-//            return
-//        }
+        errorMessage = nil
         
+        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 do {
@@ -33,9 +28,15 @@ class FetcherViewModel: ObservableObject {
                     }
                 } catch {
                     print("Decoding error: \(error)")
+                    print(self.errorMessage ?? "virhe")
                 }
             }
             
         }.resume()
     }
 }
+
+//        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
+//            print("Invalid URL")
+//            return
+//        }

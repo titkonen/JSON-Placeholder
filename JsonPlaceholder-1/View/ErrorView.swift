@@ -10,13 +10,12 @@ import SwiftUI
 struct ErrorView: View {
     @ObservedObject var fetcherViewModel: FetcherViewModel
     
-    
     var body: some View {
         VStack {
             Text("Error")
                 .font(.largeTitle)
                 .foregroundColor(.red)
-//            Text(fetcherViewModel.errorMessage ?? "")
+            Text(fetcherViewModel.errorMessage ?? "")
             
             Button {
                 fetcherViewModel.fetchPosts()
