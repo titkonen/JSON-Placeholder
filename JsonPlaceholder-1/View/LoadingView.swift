@@ -15,7 +15,7 @@ struct LoadingView: View {
                 .font(.largeTitle)
             ProgressView()
             Text("Loading content...")
-                .foregroundColor(Color.secondary)
+                .foregroundColor(Color.primary)
         }
         
     }
